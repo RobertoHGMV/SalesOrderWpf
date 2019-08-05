@@ -5,18 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SalesOrderWpf.UI"
         mc:Ignorable="d"
-        Title="OrdersForm" Height="450" Width="800">
+        Title="Pedido" Height="450" Width="800">
     <Grid>
-        <GroupBox Margin="10,10,10,103" Padding="10">
-            <GroupBox.Header>
-                <TextBlock FontWeight="Bold">Pedido</TextBlock>
-            </GroupBox.Header>
-            <StackPanel Margin="0,0,5,14">
-                <TextBlock HorizontalAlignment="Left">Código do parceiro de negócio:</TextBlock>
-                <TextBox x:Name="txtCode" HorizontalAlignment="Left"/>
-                <TextBlock HorizontalAlignment="Left">Nome do parceiro de negócio:</TextBlock>
-                <TextBox x:Name="txtName" HorizontalAlignment="Left"/>
-            </StackPanel>
-        </GroupBox>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Código:" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" Text="Nome:" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCardCode" Height="23" Margin="54,9,328,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCardName" Height="23" Margin="54,35,328,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Button x:Name="cmdOk" Content="OK" HorizontalAlignment="Left" Margin="10,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom"/>
+        <Button x:Name="cmdCancel" Content="Cancelar" HorizontalAlignment="Left" Margin="90,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom"/>
+        <DataGrid x:Name="gridLines" Margin="10,71,10,45"/>
+
     </Grid>
 </Window>
