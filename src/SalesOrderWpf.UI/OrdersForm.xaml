@@ -1,0 +1,22 @@
+﻿<Window x:Class="SalesOrderWpf.UI.OrdersForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SalesOrderWpf.UI"
+        mc:Ignorable="d"
+        Title="OrdersForm" Height="450" Width="800">
+    <Grid>
+        <GroupBox Margin="10,10,10,103" Padding="10">
+            <GroupBox.Header>
+                <TextBlock FontWeight="Bold">Pedido</TextBlock>
+            </GroupBox.Header>
+            <StackPanel Margin="0,0,5,14">
+                <TextBlock HorizontalAlignment="Left">Código do parceiro de negócio:</TextBlock>
+                <TextBox x:Name="txtCode" HorizontalAlignment="Left"/>
+                <TextBlock HorizontalAlignment="Left">Nome do parceiro de negócio:</TextBlock>
+                <TextBox x:Name="txtName" HorizontalAlignment="Left"/>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Window>
