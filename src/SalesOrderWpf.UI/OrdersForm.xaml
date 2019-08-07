@@ -14,5 +14,8 @@
         <Button x:Name="cmdOk" Content="OK" HorizontalAlignment="Left" Margin="10,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom" Click="CmdOk_Click"/>
         <Button x:Name="cmdCancel" Content="Cancelar" HorizontalAlignment="Left" Margin="90,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom"/>
         <DataGrid x:Name="gridLines" Margin="10,71,10,45"/>
+        <Button x:Name="btnAddLine" Content="Adicionar Item" Margin="0,0,220,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Click="BtnAddLine_Click"/>
+        <Button x:Name="btnUpdateLine" Content="Editar Item" Margin="0,0,115,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Click="BtnUpdateLine_Click"/>
+        <Button x:Name="btnRemoveLine" Content="Remover Item" Margin="0,0,10,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Click="BtnRemoveLine_Click"/>
     </Grid>
 </Window>

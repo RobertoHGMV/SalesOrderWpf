@@ -34,19 +34,9 @@ namespace SalesOrderWpf.UI
 
         private void SignEvents()
         {
-            this.Loaded += Window_Loaded;
-        }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                FormatGrid();
-            }
-            catch (Exception ex)
-            {
-                FormHelper.MessageError(ex);
-            }
+            Loaded += Window_Loaded;
+            cmdCancel.Click += CmdCancel_Click;
+            cmdOk.Click += CmdOk_Click;
         }
 
         private void FormatGrid()
@@ -61,12 +51,80 @@ namespace SalesOrderWpf.UI
             gridLines.IsReadOnly = true;
         }
 
+        private void Save()
+        {
+            var order = new OrderInput();
+            order.CardCode = txtCardCode.Text;
+            order.CardName = txtCardName.Text;
+            order.Lines = Lines;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                FormatGrid();
+            }
+            catch (Exception ex)
+            {
+                FormHelper.MessageError(ex);
+            }
+        }
+
         private void CmdOk_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 var est = Lines;
-                Lines.Add(new LineInput { ItemCode = "I0002", ItemName = "Clip", Price = 13.22m, Quantity = 5, Total = 57.86m });
+                Lines.Add(new LineInput { ItemCode = "I0002", ItemName = "Clip", Price = 13.22m, Quantity = 5 });
+            }
+            catch (Exception ex)
+            {
+                FormHelper.MessageError(ex);
+            }
+        }
+
+        private void CmdCancel_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Close();
+            }
+            catch (Exception ex)
+            {
+                FormHelper.MessageError(ex);
+            }
+        }
+
+        private void BtnAddLine_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                FormHelper.MessageError(ex);
+            }
+        }
+
+        private void BtnUpdateLine_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                
+            }
+            catch (Exception ex)
+            {
+                FormHelper.MessageError(ex);
+            }
+        }
+
+        private void BtnRemoveLine_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                
             }
             catch (Exception ex)
             {

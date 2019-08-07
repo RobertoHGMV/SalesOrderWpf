@@ -113,7 +113,6 @@ namespace SalesOrderWpf.Business.Services
                 Id = order.Id.ToString(),
                 CardCode = order.BusinessPartner.CardCode,
                 CardName = order.BusinessPartner.CardName,
-                Total = order.Total,
                 Lines = linesInput
             };
         }
@@ -125,7 +124,6 @@ namespace SalesOrderWpf.Business.Services
                 Id = order.Id.ToString(),
                 CardCode = order.BusinessPartner.CardCode,
                 CardName = order.BusinessPartner.CardName,
-                Total = order.Total
             };
         }
 
@@ -149,7 +147,6 @@ namespace SalesOrderWpf.Business.Services
                 ItemName = line.Item.ItemName,
                 Price = line.Item.Price,
                 Quantity = line.Quantity,
-                Total = line.Total
             };
         }
 
