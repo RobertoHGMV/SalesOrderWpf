@@ -11,9 +11,8 @@
         <TextBlock HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" Text="Nome:" VerticalAlignment="Top"/>
         <TextBox x:Name="txtCardCode" Height="23" Margin="54,9,328,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox x:Name="txtCardName" Height="23" Margin="54,35,328,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <Button x:Name="cmdOk" Content="OK" HorizontalAlignment="Left" Margin="10,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom"/>
+        <Button x:Name="cmdOk" Content="OK" HorizontalAlignment="Left" Margin="10,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom" Click="CmdOk_Click"/>
         <Button x:Name="cmdCancel" Content="Cancelar" HorizontalAlignment="Left" Margin="90,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom"/>
         <DataGrid x:Name="gridLines" Margin="10,71,10,45"/>
-
     </Grid>
 </Window>
