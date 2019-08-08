@@ -13,44 +13,58 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace SalesOrderWpf.UI
 {
-    public partial class LineForm : Window
+    public partial class ItemForm : Window
     {
-        private LineInput _lineInput;
+        public LineInput LineInput;
 
-        public LineForm()
+        public ItemForm(LineInput lineInput)
         {
             InitializeComponent();
+
+            LineInput = lineInput;
+
+            FillControls();
+            SignEvents();
         }
 
         private void SignEvents()
         {
+            txtQuantity.PreviewTextInput += TxtQuantity_PreviewTextInput;
             txtQuantity.TextChanged += CalcLineTotalEvent;
             txtPrice.TextChanged += CalcLineTotalEvent;
         }
 
         private void FillControls()
         {
-            txtItemCode.Text = _lineInput.ItemCode;
-            txtItemName.Text = _lineInput.ItemName;
-            txtQuantity.Text = _lineInput.Quantity.ToString();
-            txtPrice.Text = _lineInput.Price.ToString();
-            txtLineTotal.Text = _lineInput.Total.ToString();
+            txtItemCode.Text = LineInput.ItemCode;
+            txtItemName.Text = LineInput.ItemName;
+            txtQuantity.Text = decimal.Zero.Equals(LineInput.Quantity) ? string.Empty : LineInput.Quantity.ToString();
+            txtPrice.Text = decimal.Zero.Equals(LineInput.Price) ? string.Empty : LineInput.Price.ToString();
+            txtLineTotal.Text = LineInput.Total.ToString();
         }
 
         private void FillClass()
         {
-            _lineInput.ItemCode = txtItemCode.Text;
-            _lineInput.ItemName = txtItemName.Text;
+            LineInput.ItemCode = txtItemCode.Text;
+            LineInput.ItemName = txtItemName.Text;
+            SetQuantityAndPrice();
         }
 
-        private void CalcLineTotalEvent(object sender, TextChangedEventArgs e)
+        private void Save()
+        {
+            FillClass();
+        }
+
+        private void TxtQuantity_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             try
             {
-                txtLineTotal.Text = _lineInput.Total.ToString();
+                var textBox = sender as TextBox;
+                e.Handled = Regex.IsMatch(e.Text, "[^0-9]+");
             }
             catch (Exception ex)
             {
@@ -58,11 +72,44 @@ namespace SalesOrderWpf.UI
             }
         }
 
+        private void CalcLineTotalEvent(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                SetQuantityAndPrice();
+                txtLineTotal.Text = LineInput.Total.ToString();
+            }
+            catch (Exception ex)
+            {
+                FormHelper.MessageError(ex);
+            }
+        }
+
+        private void SetQuantityAndPrice()
+        {
+            LineInput.Quantity = string.IsNullOrEmpty(txtQuantity.Text) ? 0 : Convert.ToInt32(txtQuantity.Text);
+            LineInput.Price = string.IsNullOrEmpty(txtPrice.Text) ? decimal.Zero : Convert.ToDecimal(txtPrice.Text);
+        }
+
         private void CmdOk_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                
+                Save();
+                FormHelper.MessageSuccess();
+                DialogResult = true;
+            }
+            catch (Exception ex)
+            {
+                FormHelper.MessageError(ex);
+            }
+        }
+
+        private void BtnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Close();
             }
             catch (Exception ex)
             {

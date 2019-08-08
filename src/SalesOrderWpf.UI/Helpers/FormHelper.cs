@@ -25,5 +25,14 @@ namespace SalesOrderWpf.UI.Helpers
 
             column.Header = columnDescription;
         }
+
+        public static void SetInvisible(this DataGrid dataGrid, string columnName)
+        {
+            var column = dataGrid.Columns.FirstOrDefault(c => columnName.Equals(c.Header.ToString()));
+
+            if (column is null) return;
+
+            column.Visibility = Visibility.Hidden;
+        }
     }
 }

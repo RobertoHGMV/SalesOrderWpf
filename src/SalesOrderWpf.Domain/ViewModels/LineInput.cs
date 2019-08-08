@@ -10,8 +10,15 @@
         public int Quantity { get; set; }
         public decimal Total
         {
-            get { return Price * Quantity; }
-            private set { }
+            get
+            {
+                return CalcTotal();
+            }
+        }
+
+        public decimal CalcTotal()
+        {
+            return Price * Quantity;
         }
     }
 }

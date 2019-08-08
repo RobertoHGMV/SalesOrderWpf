@@ -17,11 +17,9 @@ using System.Windows.Shapes;
 
 namespace SalesOrderWpf.UI
 {
-    /// <summary>
-    /// Lógica interna para OrdersForm.xaml
-    /// </summary>
     public partial class OrdersForm : Window
     {
+        private bool _isClosed = false;
         public ObservableCollection<LineInput> Lines { get; set; }
 
         public OrdersForm()
@@ -35,15 +33,15 @@ namespace SalesOrderWpf.UI
         private void SignEvents()
         {
             Loaded += Window_Loaded;
-            cmdCancel.Click += CmdCancel_Click;
-            cmdOk.Click += CmdOk_Click;
+            this.Closed += OrdersForm_Closed;
         }
 
         private void FormatGrid()
         {
-            gridLines.SetHeader("Id", "Código");
-            gridLines.SetHeader("OrderId", "Pedido");
-            gridLines.SetHeader("ItemCode", "Código Item");
+            gridLines.SetInvisible("Id");
+            gridLines.SetInvisible("OrderId");
+
+            gridLines.SetHeader("ItemCode", "Código");
             gridLines.SetHeader("ItemName", "Descrição");
             gridLines.SetHeader("Price", "Preço");
             gridLines.SetHeader("Quantity", "Quantidade");
@@ -71,12 +69,90 @@ namespace SalesOrderWpf.UI
             }
         }
 
+        private void OrdersForm_Closed(object sender, EventArgs e)
+        {
+            try
+            {
+                _isClosed = true;
+                //base.OnClosed(e);
+            }
+            catch (Exception ex)
+            {
+                FormHelper.MessageError(ex);
+            }
+        }
+
+        private void BtnAddLine_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var line = new LineInput();
+                var form = new ItemForm(line);
+                form.Closed += Form_Closed;
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                FormHelper.MessageError(ex);
+            }
+        }
+
+        private void Form_Closed(object sender, EventArgs e)
+        {
+            try
+            {
+                var form = sender as ItemForm;
+                var dialogResul = form?.DialogResult ?? false;
+
+                if (_isClosed || !dialogResul) return;
+                
+                Lines.Add(form.LineInput);
+            }
+            catch (Exception ex)
+            {
+                FormHelper.MessageError(ex);
+            }
+        }
+
+        private void BtnUpdateLine_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var line = gridLines.SelectedItem as LineInput;
+
+                if (line is null)
+                    throw new Exception("Nenhuma linha selecionada");
+
+                var form = new ItemForm(line);
+                form.Closed += Form_Closed;
+                form.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                FormHelper.MessageError(ex);
+            }
+        }
+
+        private void BtnRemoveLine_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                var line = gridLines.SelectedItem as LineInput;
+
+                if (line != null)
+                    Lines.Remove(line);
+            }
+            catch (Exception ex)
+            {
+                FormHelper.MessageError(ex);
+            }
+        }
+
         private void CmdOk_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var est = Lines;
-                Lines.Add(new LineInput { ItemCode = "I0002", ItemName = "Clip", Price = 13.22m, Quantity = 5 });
+
             }
             catch (Exception ex)
             {
@@ -89,42 +165,6 @@ namespace SalesOrderWpf.UI
             try
             {
                 Close();
-            }
-            catch (Exception ex)
-            {
-                FormHelper.MessageError(ex);
-            }
-        }
-
-        private void BtnAddLine_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                FormHelper.MessageError(ex);
-            }
-        }
-
-        private void BtnUpdateLine_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                FormHelper.MessageError(ex);
-            }
-        }
-
-        private void BtnRemoveLine_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                
             }
             catch (Exception ex)
             {

@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SalesOrderWpf.UI"
         mc:Ignorable="d"
-        Title="Pedido" Height="450" Width="800">
+        Title="Pedido" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Código:" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" Text="Nome:" VerticalAlignment="Top"/>
         <TextBox x:Name="txtCardCode" Height="23" Margin="54,9,328,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox x:Name="txtCardName" Height="23" Margin="54,35,328,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Button x:Name="cmdOk" Content="OK" HorizontalAlignment="Left" Margin="10,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom" Click="CmdOk_Click"/>
-        <Button x:Name="cmdCancel" Content="Cancelar" HorizontalAlignment="Left" Margin="90,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom"/>
+        <Button x:Name="cmdCancel" Content="Cancelar" HorizontalAlignment="Left" Margin="90,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom" Click="CmdCancel_Click"/>
         <DataGrid x:Name="gridLines" Margin="10,71,10,45"/>
         <Button x:Name="btnAddLine" Content="Adicionar Item" Margin="0,0,220,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Click="BtnAddLine_Click"/>
         <Button x:Name="btnUpdateLine" Content="Editar Item" Margin="0,0,115,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Click="BtnUpdateLine_Click"/>
