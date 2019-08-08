@@ -118,6 +118,10 @@
       <Project>{c1d73574-de48-4e6f-8abb-5c98f8b47cda}</Project>
       <Name>SalesOrderWpf.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SalesOrderWpf.Infra\SalesOrderWpf.Infra.csproj">
+      <Project>{514212FE-438D-4B6C-A25F-ACE38E36B29E}</Project>
+      <Name>SalesOrderWpf.Infra</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
-﻿using SalesOrderWpf.Domain.ViewModels;
+﻿using SalesOrderWpf.Domain.Services;
+using SalesOrderWpf.Domain.ViewModels;
 using SalesOrderWpf.UI.Helpers;
 using System;
 using System.Collections.Generic;
@@ -19,14 +20,35 @@ namespace SalesOrderWpf.UI
 {
     public partial class OrdersForm : Window
     {
+        IOrderService _service;
         private bool _isClosed = false;
+        
+        private OrderInput Order;
         public ObservableCollection<LineInput> Lines { get; set; }
 
-        public OrdersForm()
+        public OrdersForm(IOrderService service)
         {
             InitializeComponent();
+
+            _service = service;
+            Order = new OrderInput();
             Lines = new ObservableCollection<LineInput>();
-            gridLines.ItemsSource = Lines;
+
+            FillControls();
+            SignEvents();
+        }
+
+        public OrdersForm(IOrderService service, OrderInput order)
+        {
+            InitializeComponent();
+
+            _service = service;
+            Order = order;
+            Lines = new ObservableCollection<LineInput>();
+            foreach (var line in order.Lines)
+                Lines.Add(line);
+
+            FillControls();
             SignEvents();
         }
 
@@ -34,6 +56,20 @@ namespace SalesOrderWpf.UI
         {
             Loaded += Window_Loaded;
             this.Closed += OrdersForm_Closed;
+        }
+
+        private void FillClass()
+        {
+            Order.CardCode = txtCardCode.Text;
+            Order.CardName = txtCardName.Text;
+            Order.Lines = Lines;
+        }
+
+        private void FillControls()
+        {
+            txtCardCode.Text = Order.CardCode;
+            txtCardName.Text = Order.CardName;
+            gridLines.ItemsSource = Lines;
         }
 
         private void FormatGrid()
@@ -46,15 +82,18 @@ namespace SalesOrderWpf.UI
             gridLines.SetHeader("Price", "Preço");
             gridLines.SetHeader("Quantity", "Quantidade");
             gridLines.SetHeader("Total", "Total");
+
             gridLines.IsReadOnly = true;
         }
 
         private void Save()
         {
-            var order = new OrderInput();
-            order.CardCode = txtCardCode.Text;
-            order.CardName = txtCardName.Text;
-            order.Lines = Lines;
+            FillClass();
+
+            if (string.IsNullOrEmpty(Order.Id))
+                _service.Add(Order);
+            else
+                _service.Update(Order);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -124,8 +163,10 @@ namespace SalesOrderWpf.UI
                     throw new Exception("Nenhuma linha selecionada");
 
                 var form = new ItemForm(line);
-                form.Closed += Form_Closed;
                 form.ShowDialog();
+
+                var lineToUpdated = Lines.FirstOrDefault(c => line.Id.Equals(c.Id));
+                lineToUpdated = line;
             }
             catch (Exception ex)
             {
@@ -152,7 +193,11 @@ namespace SalesOrderWpf.UI
         {
             try
             {
+                if (!UserConfirm("Deseja salvar as alterações?")) return;
 
+                Save();
+                FormHelper.MessageSuccess();
+                DialogResult = true;
             }
             catch (Exception ex)
             {
@@ -170,6 +215,11 @@ namespace SalesOrderWpf.UI
             {
                 FormHelper.MessageError(ex);
             }
+        }
+
+        private bool UserConfirm(string message)
+        {
+            return MessageBoxResult.Yes.Equals(FormHelper.MessageQuestion(message));
         }
     }
 }

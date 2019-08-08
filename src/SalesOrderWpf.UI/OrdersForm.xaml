@@ -7,15 +7,15 @@
         mc:Ignorable="d"
         Title="Pedido" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
-        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Código:" VerticalAlignment="Top"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" Text="Nome:" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtCardCode" Height="23" Margin="54,9,328,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtCardName" Height="23" Margin="54,35,328,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Código do parceiro de negócio:" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,34,0,0" TextWrapping="Wrap" Text="Nome do parceiro de negócio:" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCardCode" Height="23" Margin="188,6,194,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtCardName" Height="23" Margin="188,31,194,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Button x:Name="cmdOk" Content="OK" HorizontalAlignment="Left" Margin="10,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom" Click="CmdOk_Click"/>
         <Button x:Name="cmdCancel" Content="Cancelar" HorizontalAlignment="Left" Margin="90,0,0,10" Width="75" Height="20" VerticalAlignment="Bottom" Click="CmdCancel_Click"/>
         <DataGrid x:Name="gridLines" Margin="10,71,10,45"/>
         <Button x:Name="btnAddLine" Content="Adicionar Item" Margin="0,0,220,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Click="BtnAddLine_Click"/>
-        <Button x:Name="btnUpdateLine" Content="Editar Item" Margin="0,0,115,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Click="BtnUpdateLine_Click"/>
+        <Button x:Name="btnUpdateLine" Content="Atualizar Item" Margin="0,0,115,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Click="BtnUpdateLine_Click"/>
         <Button x:Name="btnRemoveLine" Content="Remover Item" Margin="0,0,10,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="100" Click="BtnRemoveLine_Click"/>
     </Grid>
 </Window>

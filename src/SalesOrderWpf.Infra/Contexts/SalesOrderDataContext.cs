@@ -1,15 +1,14 @@
 ﻿using System.Collections.Generic;
 using SalesOrderWpf.Domain.Models.Orders;
-using SalesOrderWpf.Infra.EntitiesFactory;
 
 namespace SalesOrderWpf.Infra.Contexts
 {
     public class SalesOrderDataContext : ISalesOrderDataContext
     {
-        public SalesOrderDataContext(IEntityFactory entityFactory)
+        public SalesOrderDataContext()
         {
-            Orders = entityFactory.CreateOrders();
-            Lines = entityFactory.CreateLines();
+            Orders = new List<Order>();
+            Lines = new List<Line>();
         }
 
         public IList<Order> Orders { get; set; }

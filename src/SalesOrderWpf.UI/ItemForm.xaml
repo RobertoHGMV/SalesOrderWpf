@@ -20,6 +20,6 @@
         <TextBlock Margin="0,0,140,14" TextWrapping="Wrap" Text="Total:" HorizontalAlignment="Right" Width="28" Height="16" VerticalAlignment="Bottom"/>
         <TextBox x:Name="txtLineTotal" Margin="0,0,10,10" TextWrapping="Wrap" IsReadOnly="True" Text="" HorizontalAlignment="Right" Width="120" Height="24" VerticalAlignment="Bottom"/>
         <Button x:Name="cmdOk" Content="OK" HorizontalAlignment="Left" Margin="10,0,0,10" Width="74" Click="CmdOk_Click" RenderTransformOrigin="0.494,-0.195" Height="20" VerticalAlignment="Bottom"/>
-        <Button x:Name="btnCancel" Content="Cancelar" HorizontalAlignment="Left" Margin="89,0,0,9" Width="75" Click="BtnCancel_Click" Height="20" VerticalAlignment="Bottom"/>
+        <Button x:Name="btnCancel" Content="Cancelar" HorizontalAlignment="Left" Margin="89,0,0,10" Width="75" Click="BtnCancel_Click" Height="20" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>

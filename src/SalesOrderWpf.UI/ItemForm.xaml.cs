@@ -54,11 +54,6 @@ namespace SalesOrderWpf.UI
             SetQuantityAndPrice();
         }
 
-        private void Save()
-        {
-            FillClass();
-        }
-
         private void TxtQuantity_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             try
@@ -95,7 +90,7 @@ namespace SalesOrderWpf.UI
         {
             try
             {
-                Save();
+                FillClass();
                 FormHelper.MessageSuccess();
                 DialogResult = true;
             }

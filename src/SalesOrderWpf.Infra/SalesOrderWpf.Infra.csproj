@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Contexts\ISalesOrderDataContext.cs" />
     <Compile Include="Contexts\SalesOrderDataContext.cs" />
-    <Compile Include="EntitiesFactory\IEntityFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\LineRepository.cs" />
     <Compile Include="Repositories\OrderRepository.cs" />

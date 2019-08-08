@@ -16,9 +16,9 @@
         <GridSplitter Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" Height="3" Background="#FF82A6C9"></GridSplitter>
         <DataGrid x:Name="gridOrders" Margin="10"/>
         <DataGrid x:Name="gridLines" Margin="10" Grid.Row="1"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="10,20,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.244,0.674"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="707,20,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="627,20,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="547,20,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="cmdOk" Content="OK" HorizontalAlignment="Left" Margin="10,20,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75" RenderTransformOrigin="-0.244,0.674" Click="CmdOk_Click"/>
+        <Button x:Name="btnRemove" Content="Remover" HorizontalAlignment="Left" Margin="707,20,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Click="BtnRemove_Click"/>
+        <Button x:Name="btnUpdate" Content="Atualizar" HorizontalAlignment="Left" Margin="627,20,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Click="BtnUpdate_Click"/>
+        <Button x:Name="btnAdd" Content="Adicionar" HorizontalAlignment="Left" Margin="547,20,0,0" Grid.Row="2" VerticalAlignment="Top" Width="75" Click="BtnAdd_Click"/>
     </Grid>
 </Window>
